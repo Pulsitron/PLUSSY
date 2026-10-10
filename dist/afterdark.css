@@ -27,3 +27,29 @@ html{scroll-padding-top:calc(var(--nav-height) + 20px)}
 .nav .nav-actions .button.small{white-space:nowrap}
 @media(max-width:800px){:root{--nav-height:72px;--nav-link-width:136px;--nav-link-height:46px}.nav{gap:10px}}
 @media(max-width:480px){:root{--nav-link-width:112px;--nav-link-height:44px}.nav{padding-inline:4%;gap:8px}.nav .nav-actions{gap:4px}.nav .nav-actions .button.small{font-size:14px;letter-spacing:0}.nav .icon-button{padding:6px;min-width:40px}}
+
+/* The full line-up: six acts per page, with keyboard and touch navigation. */
+.show-card[hidden],.film-audio-note[hidden]{display:none!important}
+.gallery-pagination{display:flex;align-items:center;justify-content:center;gap:28px;margin:60px 0 0}
+.gallery-pagination .button{min-width:125px;min-height:48px;font-family:var(--display);font-size:18px;letter-spacing:.5px}
+.gallery-pagination .button:disabled{cursor:default;opacity:.35;transform:none;box-shadow:none}
+#gallery-page{font:700 16px var(--display);letter-spacing:1px;color:#c6ffff;text-align:center}
+.show .show-note{margin-top:20px;text-align:center}
+.film-audio-note{color:#d9ffff;font-size:13px;margin:0 0 12px}
+.sticker-section{padding-block:80px}
+.sticker-ticket{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;isolation:isolate;overflow:hidden;border:2px solid #ffb5dc;border-radius:22px;background:radial-gradient(ellipse at 14% 45%,#da449ca6,transparent 55%),linear-gradient(120deg,#6e246d,#30134c);box-shadow:0 10px 0 #401248,0 0 65px #ff4caf24;padding:45px 58px 55px 30px;gap:25px}
+.sticker-ticket:before{content:'';position:absolute;inset:12px;z-index:-1;border:1px dashed #ffc5e68c;border-radius:14px;pointer-events:none}
+.sticker-art{height:365px;position:relative;display:grid;place-items:center}
+.sticker-portrait{height:300px;width:245px;overflow:hidden;border:8px solid #fff3e8;border-radius:48% 48% 40% 40%;transform:rotate(-9deg);box-shadow:8px 12px 0 #210c424d,0 0 45px #ff78c64a;transition:transform .3s}
+.sticker-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.sticker-ticket:hover .sticker-portrait{transform:rotate(-5deg) translateY(-5px)}
+.sticker-tag{position:absolute;z-index:2;font:400 23px/1.12 var(--circus);color:#461451;background:#a9ffff;border:4px solid #fff3e8;border-radius:9px;padding:10px 17px;box-shadow:4px 6px 0 #30124366;text-align:center}
+.tag-one{left:0;bottom:22px;transform:rotate(-12deg)}.tag-two{right:-5px;top:12px;background:#ffaadf;transform:rotate(12deg)}
+.sticker-spark{position:absolute;font-size:70px;color:#ffeab3;left:2%;top:0;transform:rotate(12deg);text-shadow:0 0 22px #ffc86666}.spark-two{left:auto;top:auto;right:0;bottom:15px;color:#a9ffff;font-size:60px}
+.sticker-copy h2{font-size:clamp(37px,4.7vw,66px);line-height:1.16;margin:20px 0;letter-spacing:-1px}.sticker-copy h2 em{color:#ffaade}
+.sticker-copy p{color:#f8dcec;max-width:410px;font-size:16px;margin:0 0 25px}
+.sticker-link{gap:16px;min-height:56px}.sticker-hint{display:block;font:600 13px var(--display);letter-spacing:.6px;margin-top:14px;color:#d0eff4}
+.ticket-edge{position:absolute;bottom:11px;left:0;right:0;text-align:center;color:#fdd6e9;font:600 10px var(--display);letter-spacing:4px}
+@media(max-width:1000px){.sticker-ticket{padding:35px 35px 50px 20px;gap:15px}.sticker-art{height:325px}.sticker-portrait{width:200px;height:270px}.sticker-tag{font-size:18px;padding:9px 12px}.sticker-copy .eyebrow{font-size:11px;letter-spacing:1px}}
+@media(max-width:680px){.sticker-section{padding-block:55px}.sticker-ticket{grid-template-columns:1fr;padding:25px 24px 50px;gap:5px}.sticker-art{height:290px;width:100%;max-width:325px;justify-self:center}.sticker-portrait{width:210px;height:245px}.tag-one{bottom:5px}.sticker-copy{text-align:center}.sticker-copy .eyebrow{justify-content:center}.sticker-copy h2{font-size:clamp(36px,9vw,51px)}.sticker-copy p{margin-inline:auto}.sticker-copy .button{width:100%;padding-inline:12px;font-size:13px}.ticket-edge{letter-spacing:2px}.gallery-pagination{gap:12px;margin-top:32px}.gallery-pagination .button{min-width:95px;padding:12px 15px;font-size:16px}#gallery-page{font-size:14px;letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){.sticker-portrait{transition:none}.sticker-ticket:hover .sticker-portrait{transform:rotate(-9deg)}}
