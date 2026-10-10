@@ -1,0 +1,114 @@
+[
+  {
+    "source": "15.mp4",
+    "file": "gallery/clip-15",
+    "title": "After-dark dance",
+    "group": "ferris",
+    "poster_time": 3.6,
+    "has_audio": true
+  },
+  {
+    "source": "12.mp4",
+    "file": "gallery/clip-12",
+    "title": "Sealed with a smile",
+    "group": "portrait",
+    "poster_time": 4.6,
+    "has_audio": true
+  },
+  {
+    "source": "6.mp4",
+    "file": "gallery/clip-6",
+    "title": "Under the big top",
+    "group": "bikini",
+    "poster_time": 4.5,
+    "has_audio": true
+  },
+  {
+    "source": "17.mp4",
+    "file": "gallery/clip-17",
+    "title": "Off-duty PLUSSY",
+    "group": "gym",
+    "poster_time": 2.8,
+    "has_audio": true
+  },
+  {
+    "source": "11.mp4",
+    "file": "gallery/clip-11",
+    "title": "Balloon business",
+    "group": "ferris",
+    "poster_time": 4.6,
+    "has_audio": true
+  },
+  {
+    "source": "8a.mp4",
+    "file": "gallery/clip-8a",
+    "title": "Neon stage",
+    "group": "stage",
+    "poster_time": 1.2,
+    "has_audio": true
+  },
+  {
+    "source": "7.mp4",
+    "file": "gallery/clip-7",
+    "title": "Centre ring",
+    "group": "bikini",
+    "poster_time": 4.0,
+    "has_audio": true
+  },
+  {
+    "source": "13.mp4",
+    "file": "gallery/clip-13",
+    "title": "Front-row favourite",
+    "group": "ferris",
+    "poster_time": 0.8,
+    "has_audio": true
+  },
+  {
+    "source": "PLUSSY.mp4",
+    "file": "gallery/clip-plussy",
+    "title": "The original icon",
+    "group": "logo",
+    "poster_time": 2.9,
+    "has_audio": false
+  },
+  {
+    "source": "14.mp4",
+    "file": "gallery/clip-14",
+    "title": "A knowing look",
+    "group": "portrait",
+    "poster_time": 6.5,
+    "has_audio": true
+  },
+  {
+    "source": "8.mp4",
+    "file": "gallery/clip-8",
+    "title": "Showtime",
+    "group": "bikini",
+    "poster_time": 1.2,
+    "has_audio": true
+  },
+  {
+    "source": "10.mp4",
+    "file": "gallery/clip-10",
+    "title": "One more act",
+    "group": "ferris",
+    "poster_time": 2.7,
+    "has_audio": true
+  },
+  {
+    "source": "9.mp4",
+    "file": "gallery/clip-9",
+    "title": "Neon close-up",
+    "group": "closeup",
+    "poster_time": 0.4,
+    "has_audio": true
+  },
+  {
+    "source": "5.mp4",
+    "file": "gallery/clip-5",
+    "title": "The PLUSSY signature",
+    "group": "logo",
+    "poster_time": 0.5,
+    "has_audio": true
+  }
+]

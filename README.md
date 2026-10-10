@@ -1,3 +1,9 @@
+# Update an existing live site
+
+Extract this ZIP and upload the **contents** of `PLUSSY-GitHub-Ready` into the root of your existing GitHub repository, replacing matching files. Commit the changes and wait for your connected deployment to complete. Include the entire new `dist/assets/gallery/` folder (14 MP4s and 14 preview images). No setting changes are needed.
+
+This release adds the Telegram sticker pack and a 14-clip gallery with 6/6/2 pages, individual previews, and varied ordering. The gallery uses the uploaded originals, so their audio is preserved. `PLUSSY.mp4` is silent in the uploaded source.
+
 # PLUSSY — PulseChain Circus
 
 Ready to upload to GitHub and deploy on Vercel.
@@ -31,11 +37,13 @@ Official configuration reference: https://vercel.com/docs/project-configuration/
 - Fixed navigation and the resized linked PLUSSY logo.
 - Hero video with its original audio and a separate sound toggle.
 - Reactive Tickle PLUSSY game with free play, timed challenge, four facial expressions, keyboard/touch controls, and locally saved best score.
-- Six-act video gallery, backstage portraits and downloads, fortune wheel, Telegram link, pump.tires link, and contract-copy button.
+- Fourteen-clip video gallery with six cards per page, Back/Next controls, individual previews, and all-clip player navigation.
+- Telegram sticker-pack section linked directly to PLUSSY369.
+- Backstage portraits and downloads, fortune wheel, Telegram link, pump.tires link, and contract-copy button.
 - All currently deployed images, videos and local fonts, including font licenses.
 - Asset-version script so CSS/JavaScript edits receive fresh URLs during deployment.
 
-This is a static website. It needs no backend, wallet connection, database, API keys, or ChatGPT account. Game best scores stay on the visitor's device; there is no shared leaderboard. Media and game features are included as currently deployed, including the head-and-shoulders game artwork and older silent gallery clips.
+This is a static website. It needs no backend, wallet connection, database, API keys, or ChatGPT account. Game best scores stay on the visitor's device; there is no shared leaderboard. Media and game features are included as currently deployed, including the head-and-shoulders game artwork. All 14 gallery MP4s retain the exact uploaded source bytes and original audio. The source PLUSSY.mp4 has no audio track and is labelled as a silent original.
 
 Telegram: https://t.me/PLUSSY369
 
@@ -67,8 +75,8 @@ Then open http://localhost:8080 in your browser.
 
 **Old styling:** redeploy after your commit, then refresh the page. The build updates stylesheet and script version URLs.
 
-**Video audio:** the hero autoplays muted; tap its Sound on button. Gallery videos use their own player controls. The top sound switch controls game effects. Some older gallery video files have no audio track.
+**Video audio:** the hero autoplays muted; tap its Sound on button. Gallery videos use their own player controls. The top sound switch controls game effects. All 13 originals that contain audio retain it. The original PLUSSY.mp4 has no audio and is labelled in its card and player. Tap the video controls to play if your browser blocks playback.
 
 **Fonts or media missing:** upload the complete `dist/assets/` folder and preserve filename capitalization.
 
-The export contains no hosting credentials, ChatGPT-specific deployment metadata, or Git history. Your existing hosted site is unchanged by creating this package.
+The export contains no hosting credentials, ChatGPT-specific deployment metadata, or Git history. Upload these files to update your external GitHub/Vercel site.
