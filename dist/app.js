@@ -198,9 +198,9 @@ dialog.addEventListener('keydown',e=>{if(e.target===film)return;if(e.key==='Arro
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 dialog.addEventListener('close',()=>{film.pause();film.removeAttribute('src');film.load();if(heroWasPlaying&&!reducedMotion)heroVideo.play().catch(()=>{});lastFilmTrigger?.focus();});
 const looks={
- circus:{title:'Circus siren',label:'THE MAIN ATTRACTION',quote:'“Darling, the circus didn’t corrupt me. I corrupted the circus.”',alt:'PLUSSY in a glossy pink and blue circus outfit'},
- punk:{title:'Patent trouble',label:'PRETTY IN PINK. DANGEROUS IN BLACK.',quote:'“I came. I saw. I made it everybody’s problem.”',alt:'PLUSSY in a black patent collar with pink and blue clown makeup'},
- rebel:{title:'Neon rebel',label:'BAD MANNERS. EXCELLENT STOCKINGS.',quote:'“The dress code said trouble. I understood the assignment.”',alt:'PLUSSY in a white top, black skirt and blue striped stockings'}
+ circus:{title:'Circus siren',label:'THE MAIN ATTRACTION',quote:'“Darling, the circus didn’t corrupt me. I corrupted the circus.”',alt:'PLUSSY holding a pink balloon in a neon circus'},
+ punk:{title:'Neon muse',label:'A SMILE IN NEON',quote:'“I came. I saw. I made it everybody’s problem.”',alt:'PLUSSY smiling with purple and blue hair and a glowing pink choker'},
+ rebel:{title:'Off-duty trouble',label:'BAD MANNERS. EXCELLENT STOCKINGS.',quote:'“The dress code said trouble. I understood the assignment.”',alt:'PLUSSY holding a kettlebell at the gym in blue striped stockings'}
 };
 const lookButtons=Array.from(document.querySelectorAll('[data-look]'));let flashTimer;
 function flashPortrait(){
@@ -211,9 +211,9 @@ function flashPortrait(){
 lookButtons.forEach(button=>button.addEventListener('click',()=>{
  const key=button.dataset.look,look=looks[key];if(!look)return;
  lookButtons.forEach(b=>{const selected=b===button;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});
- const image=$('#backstage-image');image.src=`assets/backstage-${key}.webp`;image.alt=look.alt;image.dataset.look=key;
+ const image=$('#backstage-image');image.src=`assets/backstage-${key}-v2.jpg`;image.alt=look.alt;image.dataset.look=key;
  $('#look-title').textContent=look.title;$('#look-label').textContent=look.label;$('#look-quote').textContent=look.quote;
- $('#download-look').href=image.src;$('#download-look').download=`PLUSSY-${key}.webp`;tone(620,.08);
+ $('#download-look').href=image.src;$('#download-look').download=`PLUSSY-${key}.jpg`;tone(620,.08);
 }));
 $('#flash-look').addEventListener('click',flashPortrait);
 $('#copy-contract').addEventListener('click',async()=>{
