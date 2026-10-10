@@ -159,15 +159,37 @@ function spinWheel(){
 $('#spin').addEventListener('click',()=>spinWheel().catch(()=>{}));
 const dialog=$('#film-dialog'),film=$('#film-video');
 const filmButtons=Array.from(document.querySelectorAll('[data-film]'));
+const galleryPageSize=6,galleryPageCount=Math.ceil(filmButtons.length/galleryPageSize);
+let galleryPage=0;
+function showGalleryPage(page,{scroll=false}={}){
+ galleryPage=Math.max(0,Math.min(galleryPageCount-1,page));
+ const start=galleryPage*galleryPageSize,end=Math.min(start+galleryPageSize,filmButtons.length);
+ filmButtons.forEach((button,index)=>{button.hidden=index<start||index>=end;});
+ $('#gallery-range').textContent=`ACTS ${start+1}–${end} OF ${filmButtons.length}`;
+ $('#gallery-page').textContent=`Page ${galleryPage+1} of ${galleryPageCount}`;
+ $('#gallery-back').disabled=galleryPage===0;$('#gallery-next').disabled=galleryPage===galleryPageCount-1;
+ if(scroll){
+  filmButtons[start].focus({preventScroll:true});
+  $('#show').scrollIntoView({behavior:reducedMotion?'instant':'smooth',block:'start'});
+ }
+}
+$('#gallery-back').addEventListener('click',()=>showGalleryPage(galleryPage-1,{scroll:true}));
+$('#gallery-next').addEventListener('click',()=>showGalleryPage(galleryPage+1,{scroll:true}));
+showGalleryPage(0);
 let lastFilmTrigger=null,filmIndex=0,heroWasPlaying=false;
 function selectFilm(index){
  filmIndex=(index+filmButtons.length)%filmButtons.length;const button=filmButtons[filmIndex];
+ showGalleryPage(Math.floor(filmIndex/galleryPageSize));lastFilmTrigger=button;
  $('#film-title').textContent=button.dataset.title;$('#film-position').textContent=`${filmIndex+1} / ${filmButtons.length}`;
- film.src=`assets/${button.dataset.film}.mp4`;film.poster=`assets/${button.dataset.film}.webp`;film.play().catch(()=>{});
+ $('#film-audio-note').hidden=button.dataset.audio!=='false';$('#film-play-note').hidden=true;
+ film.src=`assets/${button.dataset.film}.mp4`;film.poster=`assets/${button.dataset.film}.webp`;
+ const requestedSource=film.src;
+ film.play().catch(()=>{if(film.src===requestedSource&&dialog.open)$('#film-play-note').hidden=false;});
 }
+film.addEventListener('playing',()=>{$('#film-play-note').hidden=true;});
 filmButtons.forEach((button,index)=>button.addEventListener('click',()=>{
  lastFilmTrigger=button;heroWasPlaying=!heroVideo.paused;
- heroVideo.pause();pauseGame();dialog.showModal();selectFilm(index);
+ heroVideo.pause();pauseGame();film.muted=false;film.volume=1;dialog.showModal();selectFilm(index);
 }));
 $('#previous-film').addEventListener('click',()=>selectFilm(filmIndex-1));
 $('#next-film').addEventListener('click',()=>selectFilm(filmIndex+1));
@@ -176,9 +198,9 @@ dialog.addEventListener('keydown',e=>{if(e.target===film)return;if(e.key==='Arro
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 dialog.addEventListener('close',()=>{film.pause();film.removeAttribute('src');film.load();if(heroWasPlaying&&!reducedMotion)heroVideo.play().catch(()=>{});lastFilmTrigger?.focus();});
 const looks={
- circus:{title:'Circus siren',label:'THE MAIN ATTRACTION',quote:'“Darling, the circus didn’t corrupt me. I corrupted the circus.”',alt:'PLUSSY in a glossy pink and blue circus outfit'},
- punk:{title:'Patent trouble',label:'PRETTY IN PINK. DANGEROUS IN BLACK.',quote:'“I came. I saw. I made it everybody’s problem.”',alt:'PLUSSY in a black patent collar with pink and blue clown makeup'},
- rebel:{title:'Neon rebel',label:'BAD MANNERS. EXCELLENT STOCKINGS.',quote:'“The dress code said trouble. I understood the assignment.”',alt:'PLUSSY in a white top, black skirt and blue striped stockings'}
+ circus:{title:'Circus siren',label:'THE MAIN ATTRACTION',quote:'“Darling, the circus didn’t corrupt me. I corrupted the circus.”',alt:'PLUSSY holding a pink balloon in a neon circus'},
+ punk:{title:'Neon muse',label:'A SMILE IN NEON',quote:'“I came. I saw. I made it everybody’s problem.”',alt:'PLUSSY smiling with purple and blue hair and a glowing pink choker'},
+ rebel:{title:'Off-duty trouble',label:'BAD MANNERS. EXCELLENT STOCKINGS.',quote:'“The dress code said trouble. I understood the assignment.”',alt:'PLUSSY holding a kettlebell at the gym in blue striped stockings'}
 };
 const lookButtons=Array.from(document.querySelectorAll('[data-look]'));let flashTimer;
 function flashPortrait(){
@@ -189,9 +211,9 @@ function flashPortrait(){
 lookButtons.forEach(button=>button.addEventListener('click',()=>{
  const key=button.dataset.look,look=looks[key];if(!look)return;
  lookButtons.forEach(b=>{const selected=b===button;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});
- const image=$('#backstage-image');image.src=`assets/backstage-${key}.webp`;image.alt=look.alt;image.dataset.look=key;
+ const image=$('#backstage-image');image.src=`assets/backstage-${key}-v2.jpg`;image.alt=look.alt;image.dataset.look=key;
  $('#look-title').textContent=look.title;$('#look-label').textContent=look.label;$('#look-quote').textContent=look.quote;
- $('#download-look').href=image.src;$('#download-look').download=`PLUSSY-${key}.webp`;tone(620,.08);
+ $('#download-look').href=image.src;$('#download-look').download=`PLUSSY-${key}.jpg`;tone(620,.08);
 }));
 $('#flash-look').addEventListener('click',flashPortrait);
 $('#copy-contract').addEventListener('click',async()=>{
