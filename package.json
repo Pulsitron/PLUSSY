@@ -1,0 +1,10 @@
+{
+  "name": "plussy-circus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PLUSSY PulseChain Circus static website",
+  "scripts": {
+    "build": "node scripts/version-assets.mjs",
+    "check": "node --check dist/app.js"
+  }
+}
