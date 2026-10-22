@@ -3,18 +3,154 @@
  const root=document.getElementById('meme-maker');if(!root)return;
  const $=id=>document.getElementById(id),canvas=$('meme-canvas'),ctx=canvas.getContext('2d');
  const templates=[
-  ['backstage-circus-v2.jpg','Circus siren'],['backstage-punk-v2.jpg','Neon muse'],['backstage-rebel-v2.jpg','Off-duty trouble'],
-  ['gallery/clip-15.webp','Midnight dance'],['gallery/clip-12.webp','Love, PLUSSY'],['gallery/clip-6.webp','Under the big top'],
-  ['gallery/clip-8a.webp','Neon stage'],['gallery/clip-7.webp','Centre ring'],['gallery/clip-plussy.webp','Original icon'],
-  ['gallery/clip-14.webp','A knowing look'],['gallery/clip-8.webp','Showtime'],['gallery/clip-5.webp','The PLUSSY signature']
- ];
+  [
+    "memes/plussy-01.jpg",
+    "After-hours tease"
+  ],
+  [
+    "memes/plussy-02.jpg",
+    "Balloon trouble"
+  ],
+  [
+    "memes/plussy-03.jpg",
+    "Tongue out"
+  ],
+  [
+    "memes/plussy-04.jpg",
+    "Circus girls"
+  ],
+  [
+    "memes/plussy-05.jpg",
+    "Gym distraction"
+  ],
+  [
+    "memes/plussy-06.jpg",
+    "Midnight mischief"
+  ],
+  [
+    "memes/plussy-07.jpg",
+    "Over the shoulder"
+  ],
+  [
+    "memes/plussy-08.jpg",
+    "Ring mistress"
+  ],
+  [
+    "memes/plussy-09.jpg",
+    "Night-out menace"
+  ],
+  [
+    "memes/plussy-10.jpg",
+    "Neon stare"
+  ],
+  [
+    "memes/plussy-11.jpg",
+    "No filter"
+  ],
+  [
+    "memes/plussy-12.jpg",
+    "Striped trouble"
+  ]
+];
  const captions=[
-  ['BAD CLOWN.','WORSE INFLUENCE.'],['I CAME FOR THE TECH','I STAYED FOR THE CIRCUS'],
-  ['THE GROUP CHAT SAID BE NORMAL','SO ANYWAY, HERE’S PLUSSY'],['MY LAST TWO BRAIN CELLS','HAVE JOINED THE CIRCUS'],
-  ['PROFESSIONAL? NO.','MEMORABLE? ABSOLUTELY.'],['SEND IN THE CLOWNS','I’M ALREADY HERE'],
-  ['I HAD A SENSIBLE PLAN','THEN THE CIRCUS OPENED'],['THEY SAID TOUCH GRASS','I TOUCHED THE CONFETTI']
- ];
- let currentImage=null,currentIndex=-1,currentName='PLUSSY',requestId=0,loading=false,exporting=false;
+  [
+    "PRETTY FACE. FILTHY MIND.",
+    "ABSOLUTELY FUCKING SHAMELESS."
+  ],
+  [
+    "STEP RIGHT UP",
+    "MY STANDARDS ARE ALREADY DOWN"
+  ],
+  [
+    "GOOD GIRLS GO TO HEAVEN",
+    "I RUN THE FUCKING CIRCUS"
+  ],
+  [
+    "YOU HAD ME AT",
+    "BAD FUCKING IDEA"
+  ],
+  [
+    "MY OUTFIT SAYS CIRCUS",
+    "MY DMs SAY OTHERWISE"
+  ],
+  [
+    "CLOWN MAKEUP ON",
+    "INNOCENT ACT OFF"
+  ],
+  [
+    "KEEP YOUR HANDS TO YOURSELF",
+    "YOUR THOUGHTS? TOO FUCKING LATE."
+  ],
+  [
+    "THE DRESS CODE IS TIGHT",
+    "THE MORALS ARE FLEXIBLE"
+  ],
+  [
+    "ALL THIS CHEMISTRY",
+    "AND NOT ONE GOOD INTENTION"
+  ],
+  [
+    "I CAN EXPLAIN THE OUTFIT",
+    "THE SEARCH HISTORY IS ANOTHER STORY"
+  ],
+  [
+    "COME FOR THE SHOW",
+    "STAY FOR THE INAPPROPRIATE THOUGHTS"
+  ],
+  [
+    "THE BIG TOP IS OPEN",
+    "BEHAVE LIKE YOU HAVE SOME FUCKING SENSE"
+  ],
+  [
+    "I PUT THE ASS",
+    "IN CLASS ACT"
+  ],
+  [
+    "YOUR SCREEN TIME IS UP",
+    "YOUR MIND IS IN THE GUTTER"
+  ],
+  [
+    "SEND NUDES?",
+    "SEND A FUCKING PERSONALITY FIRST"
+  ],
+  [
+    "SHE’S A WALKING RED FLAG",
+    "AND YOU’RE ALREADY IN THE QUEUE"
+  ],
+  [
+    "MY HALO FELL OFF",
+    "THE NECKLINE FOLLOWED"
+  ],
+  [
+    "THEY ASKED FOR FAMILY FRIENDLY",
+    "I ASKED WHICH FUCKING FAMILY"
+  ],
+  [
+    "NO BRAINS. ALL BRASS.",
+    "WELCOME TO THE CIRCUS, BITCH."
+  ],
+  [
+    "FIFTY SHADES OF CLOWN",
+    "ZERO SHADES OF SHAME"
+  ],
+  [
+    "THE LIPSTICK IS SMEARED",
+    "THE ALIBI IS IMMACULATE"
+  ],
+  [
+    "YOUR MUM SAID BE GOOD",
+    "I’M A TERRIBLE FUCKING LISTENER"
+  ],
+  [
+    "HORNY ON MAIN?",
+    "DARLING, THIS IS THE MAIN ATTRACTION."
+  ],
+  [
+    "I’M NOT YOUR TYPE",
+    "I’M YOUR NEXT BAD DECISION."
+  ]
+];
+ let currentImage=null,currentIndex=-1,currentName='PLUSSY',requestId=0,loading=false,exporting=false,lastCaptionIndex=0;
  const buttons=templates.map(([file,name],index)=>{
   const button=document.createElement('button');button.type='button';button.className='meme-template';button.title=name;
   button.setAttribute('aria-label',`Use ${name}`);button.setAttribute('aria-pressed','false');
@@ -88,10 +224,10 @@
  });
  $('meme-random').addEventListener('click',()=>{
   let index=Math.floor(Math.random()*templates.length);if(index===currentIndex)index=(index+1)%templates.length;
-  const pair=captions[Math.floor(Math.random()*captions.length)];$('meme-top').value=pair[0];$('meme-bottom').value=pair[1];render();chooseTemplate(index);
+  let captionIndex=Math.floor(Math.random()*captions.length);if(captionIndex===lastCaptionIndex)captionIndex=(captionIndex+1)%captions.length;lastCaptionIndex=captionIndex;const pair=captions[captionIndex];$('meme-top').value=pair[0];$('meme-bottom').value=pair[1];render();chooseTemplate(index);
  });
  $('meme-reset').addEventListener('click',()=>{
-  $('meme-top').value=captions[0][0];$('meme-bottom').value=captions[0][1];$('meme-size').value='72';$('meme-layout').value='contain';$('meme-color').value='#ffffff';render();chooseTemplate(0);
+  lastCaptionIndex=0;$('meme-top').value=captions[0][0];$('meme-bottom').value=captions[0][1];$('meme-size').value='72';$('meme-layout').value='contain';$('meme-color').value='#ffffff';render();chooseTemplate(0);
  });
  const fontReady=document.fonts?document.fonts.load('700 72px "Barlow Condensed"').catch(()=>{}):Promise.resolve();
  fontReady.then(render);
