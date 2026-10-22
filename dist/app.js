@@ -197,25 +197,6 @@ $('#close-film').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('keydown',e=>{if(e.target===film)return;if(e.key==='ArrowRight'){e.preventDefault();selectFilm(filmIndex+1);}if(e.key==='ArrowLeft'){e.preventDefault();selectFilm(filmIndex-1);}});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 dialog.addEventListener('close',()=>{film.pause();film.removeAttribute('src');film.load();if(heroWasPlaying&&!reducedMotion)heroVideo.play().catch(()=>{});lastFilmTrigger?.focus();});
-const looks={
- circus:{title:'Circus siren',label:'THE MAIN ATTRACTION',quote:'“Darling, the circus didn’t corrupt me. I corrupted the circus.”',alt:'PLUSSY holding a pink balloon in a neon circus'},
- punk:{title:'Neon muse',label:'A SMILE IN NEON',quote:'“I came. I saw. I made it everybody’s problem.”',alt:'PLUSSY smiling with purple and blue hair and a glowing pink choker'},
- rebel:{title:'Off-duty trouble',label:'BAD MANNERS. EXCELLENT STOCKINGS.',quote:'“The dress code said trouble. I understood the assignment.”',alt:'PLUSSY holding a kettlebell at the gym in blue striped stockings'}
-};
-const lookButtons=Array.from(document.querySelectorAll('[data-look]'));let flashTimer;
-function flashPortrait(){
- const booth=$('.portrait-booth');clearTimeout(flashTimer);booth.classList.remove('flashing');void booth.offsetWidth;
- if(!reducedMotion)booth.classList.add('flashing');tone(980,.06);showToast('Looking criminally good. Tap “Take her with you” to save.');
- flashTimer=setTimeout(()=>booth.classList.remove('flashing'),550);
-}
-lookButtons.forEach(button=>button.addEventListener('click',()=>{
- const key=button.dataset.look,look=looks[key];if(!look)return;
- lookButtons.forEach(b=>{const selected=b===button;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});
- const image=$('#backstage-image');image.src=`assets/backstage-${key}-v2.jpg`;image.alt=look.alt;image.dataset.look=key;
- $('#look-title').textContent=look.title;$('#look-label').textContent=look.label;$('#look-quote').textContent=look.quote;
- $('#download-look').href=image.src;$('#download-look').download=`PLUSSY-${key}.jpg`;tone(620,.08);
-}));
-$('#flash-look').addEventListener('click',flashPortrait);
 $('#copy-contract').addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText(CA);$('#copy-label').textContent='COPIED';showToast('PLUSSY contract address copied.');tone(760);setTimeout(()=>$('#copy-label').textContent='COPY',2200);}
  catch(_){const range=document.createRange();range.selectNodeContents($('#copy-contract code'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);showToast('Address selected. Use your device’s Copy command.');}

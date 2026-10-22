@@ -39,7 +39,7 @@ Official configuration reference: https://vercel.com/docs/project-configuration/
 - Reactive Tickle PLUSSY game with free play, timed challenge, four facial expressions, keyboard/touch controls, and locally saved best score.
 - Fourteen-clip video gallery with six cards per page, Back/Next controls, individual previews, and all-clip player navigation.
 - Telegram sticker-pack section linked directly to PLUSSY369.
-- Backstage portraits and downloads, fortune wheel, Telegram link, pump.tires link, and contract-copy button.
+- Meme maker, fortune wheel, Telegram link, pump.tires link, and contract-copy button.
 - All currently deployed images, videos and local fonts, including font licenses.
 - Asset-version script so CSS/JavaScript edits receive fresh URLs during deployment.
 

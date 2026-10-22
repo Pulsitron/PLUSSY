@@ -1,0 +1,5 @@
+PLUSSY meme maker update
+
+Unzip this archive. Copy the dist folder contents into the existing dist folder in Pulsitron/PLUSSY, replacing matching files and adding the two meme-maker files. Replace package.json and README.md in the repository root. Keep all existing media assets. Commit to main; the existing Vercel integration will redeploy.
+
+This is an update package for the current website, not a standalone site. It reuses existing assets. No dependencies or settings changes are needed.

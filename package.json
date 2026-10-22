@@ -5,6 +5,6 @@
   "description": "PLUSSY PulseChain Circus static website",
   "scripts": {
     "build": "node scripts/version-assets.mjs",
-    "check": "node --check dist/app.js"
+    "check": "node --check dist/app.js && node --check dist/meme-maker.js"
   }
 }
